@@ -1,10 +1,10 @@
 <div class="max-w-5xl mx-auto space-y-6">
     {{-- Header with Exam Info --}}
-    <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-sm">
+    <div class="rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 p-6 shadow-sm">
         <div class="flex items-center justify-between mb-4">
             <div>
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Exam Correction</h1>
-                <p class="text-gray-600 dark:text-gray-400">{{ $exam->title }}</p>
+                <h1 class="text-2xl font-bold text-ink dark:text-white mb-2">Exam Correction</h1>
+                <p class="text-ink-muted dark:text-gray-400">{{ $exam->title }}</p>
             </div>
             <flux:button href="{{ route('exams.take', $exam) }}" variant="ghost" icon="arrow-left">
                 Back to Exam
@@ -13,9 +13,9 @@
 
         {{-- Score Summary --}}
         <div class="grid grid-cols-4 gap-4">
-            <div class="text-center p-4 rounded-lg bg-indigo-50 dark:bg-indigo-900/20">
-                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{{ $attempt->score }}%</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Your Score</p>
+            <div class="text-center p-4 rounded-lg bg-primary-50 dark:bg-primary-900/20">
+                <p class="text-3xl font-bold text-primary-800 dark:text-secondary-300">{{ $attempt->score }}%</p>
+                <p class="text-sm text-ink-muted dark:text-gray-400 mt-1">Your Score</p>
             </div>
             <div class="text-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20">
                 <p class="text-3xl font-bold text-green-600 dark:text-green-400">{{ $this->correctCount }}</p>
@@ -36,15 +36,15 @@
     <div class="flex items-center justify-center gap-6 text-sm">
         <div class="flex items-center gap-2">
             <div class="w-4 h-4 rounded bg-green-100 dark:bg-green-900/30 border-2 border-green-500"></div>
-            <span class="text-gray-600 dark:text-gray-400">Correct Answer</span>
+            <span class="text-ink-muted dark:text-gray-400">Correct Answer</span>
         </div>
         <div class="flex items-center gap-2">
             <div class="w-4 h-4 rounded bg-red-100 dark:bg-red-900/30 border-2 border-red-500"></div>
-            <span class="text-gray-600 dark:text-gray-400">Your Answer (Incorrect)</span>
+            <span class="text-ink-muted dark:text-gray-400">Your Answer (Incorrect)</span>
         </div>
         <div class="flex items-center gap-2">
             <div class="w-4 h-4 rounded bg-gray-100 dark:bg-gray-700 border-2 border-gray-400"></div>
-            <span class="text-gray-600 dark:text-gray-400">Unanswered</span>
+            <span class="text-ink-muted dark:text-gray-400">Unanswered</span>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
                 $isUnanswered = $userAnswer === null;
             @endphp
 
-            <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-sm
+            <div class="rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 p-6 shadow-sm
                 @if($isCorrect) border-l-4 border-l-green-500
                 @elseif($isUnanswered) border-l-4 border-l-gray-400
                 @else border-l-4 border-l-red-500
@@ -66,10 +66,10 @@
                 {{-- Question Header --}}
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-3">
-                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-semibold text-sm">
+                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-secondary-300 font-semibold text-sm">
                             {{ $index + 1 }}
                         </span>
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-900 dark:bg-primary-900/30 dark:text-secondary-300">
                             {{ ucfirst(str_replace('_', ' ', $question->type)) }}
                         </span>
                         @if($isCorrect)

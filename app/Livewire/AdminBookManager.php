@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
@@ -28,6 +29,9 @@ class AdminBookManager extends Component
     public int $stock = 0;
     public ?int $categoryId = null;
     public $image;
+    public $bookFile;
+    public ?string $existingFilePath = null;
+    public ?string $existingImagePath = null;
 
     public string $searchTerm = '';
 
@@ -40,7 +44,8 @@ class AdminBookManager extends Component
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'categoryId' => 'nullable|exists:categories,id',
-            'image' => 'nullable|image|max:2048', // 2MB Max
+            'image' => 'nullable|image|max:20048', // 20MB Max
+            'bookFile' => 'nullable|file|max:20480|mimes:pdf,doc,docx', // 20MB Max
         ];
     }
 
@@ -72,6 +77,9 @@ class AdminBookManager extends Component
         $this->stock = 0;
         $this->categoryId = null;
         $this->image = null;
+        $this->bookFile = null;
+        $this->existingFilePath = null;
+        $this->existingImagePath = null;
     }
 
     public function openCreateModal(): void
@@ -84,14 +92,21 @@ class AdminBookManager extends Component
     {
         $validated = $this->validate();
         $validated['slug'] = Str::slug($this->title) . '-' . Str::random(5);
+        $validated['category_id'] = $validated['categoryId'] ?: null;
+        unset($validated['categoryId'], $validated['bookFile']);
 
         if ($this->image) {
             $validated['image'] = $this->image->store('books', 'public');
         }
 
+        if ($this->bookFile) {
+            $validated['file_path'] = $this->bookFile->store('books/files', 'public');
+        }
+
         Book::create($validated);
 
         $this->showCreateModal = false;
+        $this->resetForm();
         $this->dispatch('notification', message: 'Book created successfully', type: 'success');
     }
 
@@ -104,6 +119,10 @@ class AdminBookManager extends Component
         $this->price = $book->price;
         $this->stock = $book->stock;
         $this->categoryId = $book->category_id;
+        $this->existingFilePath = $book->file_path;
+        $this->existingImagePath = $book->image;
+        $this->bookFile = null;
+        $this->image = null;
         $this->showEditModal = true;
     }
 
@@ -115,15 +134,30 @@ class AdminBookManager extends Component
 
         $validated = $this->validate();
         $validated['slug'] = Str::slug($this->title) . '-' . Str::random(5);
+        $validated['category_id'] = $validated['categoryId'] ?: null;
+        unset($validated['categoryId'], $validated['bookFile']);
 
         if ($this->image) {
+            if ($this->editingBook->image) {
+                Storage::disk('public')->delete($this->editingBook->image);
+            }
+
             $validated['image'] = $this->image->store('books', 'public');
+        }
+
+        if ($this->bookFile) {
+            if ($this->editingBook->file_path) {
+                Storage::disk('public')->delete($this->editingBook->file_path);
+            }
+
+            $validated['file_path'] = $this->bookFile->store('books/files', 'public');
         }
 
         $this->editingBook->update($validated);
 
         $this->showEditModal = false;
         $this->editingBook = null;
+        $this->resetForm();
         $this->dispatch('notification', message: 'Book updated successfully', type: 'success');
     }
 
@@ -136,6 +170,14 @@ class AdminBookManager extends Component
     public function deleteBook(): void
     {
         if ($this->deletingBook) {
+            if ($this->deletingBook->image) {
+                Storage::disk('public')->delete($this->deletingBook->image);
+            }
+
+            if ($this->deletingBook->file_path) {
+                Storage::disk('public')->delete($this->deletingBook->file_path);
+            }
+
             $this->deletingBook->delete();
             $this->deletingBook = null;
             $this->showDeleteModal = false;

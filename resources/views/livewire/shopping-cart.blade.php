@@ -48,7 +48,7 @@
                                     @endif
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-lg font-bold text-indigo-600 dark:text-indigo-400">
+                                    <p class="text-lg font-bold text-primary-800 dark:text-secondary-300">
                                         GH₵ {{ number_format($item['subtotal'], 2) }}
                                     </p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">
@@ -111,7 +111,7 @@
                 <flux:separator />
                 <div class="flex justify-between text-lg font-bold text-gray-900 dark:text-white">
                     <span>Total</span>
-                    <span class="text-indigo-600 dark:text-indigo-400">GH₵ {{ number_format($cartTotal, 2) }}</span>
+                    <span class="text-primary-800 dark:text-secondary-300">GH₵ {{ number_format($cartTotal, 2) }}</span>
                 </div>
             </div>
 

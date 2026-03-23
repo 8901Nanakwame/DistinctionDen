@@ -2,8 +2,8 @@
     {{-- Header --}}
     <div class="flex items-center justify-between">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Browse Exams</h1>
-            <p class="text-gray-600 dark:text-gray-400">Choose from our collection of practice exams</p>
+            <h1 class="text-3xl font-bold text-ink dark:text-white mb-2">Browse Exams</h1>
+            <p class="text-ink-muted dark:text-gray-400">Choose from our collection of practice exams</p>
         </div>
     </div>
 
@@ -40,9 +40,9 @@
     @else
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             @foreach($this->exams as $exam)
-                <div class="group relative rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div class="group relative rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 overflow-hidden hover:shadow-lg transition-all duration-300">
                     {{-- Card Header with Gradient --}}
-                    <div class="h-32 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 relative overflow-hidden">
+                    <div class="h-32 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-600 relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/20"></div>
                         <div class="absolute bottom-4 left-4 right-4">
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/20 text-white backdrop-blur-sm">

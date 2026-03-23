@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/exams', function (\Illuminate\Http\Request $request) {
+Route::get('/exams-list', function (\Illuminate\Http\Request $request) {
     $search = $request->query('search');
     $categories = \App\Models\Category::where('type', 'exam')
         ->with(['exams' => function ($query) use ($search) {
@@ -43,7 +43,7 @@ Route::get('/exams', function (\Illuminate\Http\Request $request) {
         ->get();
 
     return view('homeExams', compact('categories', 'search'));
-})->name('exams.index');
+})->name('exams-list');
 
 Route::get('/books-list', function (\Illuminate\Http\Request $request) {
     $search = $request->query('search');
@@ -99,7 +99,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('cart', 'cart.index')->name('cart.index');
 
     // Exam browsing for signed-in users.
-    // Route::view('exams', 'exams.index')->name('exams.index');
+     Route::view('exams', 'exams.index')->name('exams.index');
 
     // Exam detail page.
     // Eager-load related data to keep the Blade view simple and avoid N+1 queries.

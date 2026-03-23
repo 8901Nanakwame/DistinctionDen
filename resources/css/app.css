@@ -11,6 +11,41 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
+    /*
+     * Brand palette (from DD Online Tutorial flyers).
+     * Primary = royal blue, Secondary = bright cyan highlight.
+     */
+    --color-primary-50: #eff5ff;
+    --color-primary-100: #dbe9ff;
+    --color-primary-200: #bdd6ff;
+    --color-primary-300: #90b8ff;
+    --color-primary-400: #5b92ff;
+    --color-primary-500: #2f6bff;
+    --color-primary-600: #1848ff;
+    --color-primary-700: #1036d9;
+    --color-primary-800: #0d2dae;
+    --color-primary-900: #0b278f;
+    --color-primary-950: #071a5c;
+
+    --color-secondary-50: #e9fbff;
+    --color-secondary-100: #cff6ff;
+    --color-secondary-200: #a7ecff;
+    --color-secondary-300: #6cdcff;
+    --color-secondary-400: #2fc8ff;
+    --color-secondary-500: #17b7ff;
+    --color-secondary-600: #0495db;
+    --color-secondary-700: #0377b0;
+    --color-secondary-800: #045f8c;
+    --color-secondary-900: #064f74;
+    --color-secondary-950: #03344f;
+
+    --color-page: #f6f8ff;
+    --color-surface: #ffffff;
+    --color-surface-2: #f0f5ff;
+    --color-border: #dbe6ff;
+    --color-ink: #0b1437;
+    --color-ink-muted: #41507a;
+
     --color-zinc-50: #fafafa;
     --color-zinc-100: #f5f5f5;
     --color-zinc-200: #e5e5e5;
@@ -23,8 +58,8 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
+    --color-accent: var(--color-primary-800);
+    --color-accent-content: var(--color-primary-800);
     --color-accent-foreground: var(--color-white);
 }
 
@@ -37,6 +72,37 @@
 }
 
 @layer base {
+    :root {
+        color-scheme: light;
+    }
+
+    .dark {
+        color-scheme: dark;
+    }
+
+    body {
+        background: var(--color-page);
+        color: var(--color-ink);
+    }
+
+    /*
+     * Flyer-like soft blue swooshes.
+     * Subtle by default, avoids interfering with Flux UI.
+     */
+    body::before {
+        content: '';
+        position: fixed;
+        inset: -20vh -20vw;
+        pointer-events: none;
+        z-index: -1;
+        background:
+            radial-gradient(900px 500px at 12% 8%, color-mix(in srgb, var(--color-primary-500) 22%, transparent) 0%, transparent 70%),
+            radial-gradient(700px 450px at 92% 14%, color-mix(in srgb, var(--color-secondary-400) 18%, transparent) 0%, transparent 72%),
+            radial-gradient(900px 700px at 10% 92%, color-mix(in srgb, var(--color-primary-700) 16%, transparent) 0%, transparent 70%),
+            radial-gradient(900px 700px at 96% 92%, color-mix(in srgb, var(--color-primary-600) 14%, transparent) 0%, transparent 72%);
+        filter: blur(12px);
+        opacity: 0.9;
+    }
 
     *,
     ::after,
@@ -64,3 +130,26 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+@layer components {
+    .dd-card {
+        @apply rounded-2xl border shadow-sm;
+        background: var(--color-surface);
+        border-color: var(--color-border);
+    }
+
+    .dd-panel {
+        @apply rounded-2xl border;
+        background: var(--color-surface-2);
+        border-color: var(--color-border);
+    }
+
+    .dd-link {
+        @apply underline decoration-transparent underline-offset-4 transition;
+    }
+
+    .dd-link:hover {
+        color: var(--color-primary-800);
+        text-decoration-color: color-mix(in srgb, var(--color-primary-600) 65%, transparent);
+    }
+}

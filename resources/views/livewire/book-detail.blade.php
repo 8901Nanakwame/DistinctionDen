@@ -37,7 +37,7 @@
                         </p>
 
                         <div class="mt-4 flex items-center gap-4">
-                            <span class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                            <span class="text-3xl font-bold text-primary-800 dark:text-secondary-300">
                                 GH₵ {{ number_format($book->price, 2) }}
                             </span>
                             @if($book->stock > 0)
@@ -90,7 +90,7 @@
                     </div>
                     <div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Price</span>
-                        <p class="font-medium text-indigo-600 dark:text-indigo-400">GH₵ {{ number_format($book->price, 2) }}</p>
+                        <p class="font-medium text-primary-800 dark:text-secondary-300">GH₵ {{ number_format($book->price, 2) }}</p>
                     </div>
                 </div>
 

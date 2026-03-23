@@ -5,8 +5,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <title>@yield('title', config('app.name', 'Laravel'))</title>
 </head>
-<body class="font-sans text-gray-900 bg-white">
-    <div class="min-h-screen bg-white">
+<body class="font-sans bg-page text-ink">
+    <div class="min-h-screen bg-page text-ink">
         @include('partials.home-sidebar')
 
         <div class="flex min-h-screen flex-col lg:pl-64">

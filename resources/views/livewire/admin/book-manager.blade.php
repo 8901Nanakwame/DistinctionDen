@@ -30,6 +30,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Price</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Stock</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">File</th>
                         <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
@@ -62,6 +63,21 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="text-sm text-gray-600 dark:text-gray-400">{{ $book->category->name ?? 'Uncategorized' }}</span>
                             </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if($book->file_path)
+                                    <a
+                                        href="{{ asset('storage/' . $book->file_path) }}"
+                                        class="inline-flex items-center gap-2 text-sm font-medium text-primary-800 dark:text-secondary-200 hover:underline"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        <flux:icon name="document-arrow-down" class="h-4 w-4" />
+                                        {{ strtoupper(pathinfo($book->file_path, PATHINFO_EXTENSION)) }}
+                                    </a>
+                                @else
+                                    <span class="text-sm text-gray-400">—</span>
+                                @endif
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div class="flex justify-end gap-2">
                                     <flux:button wire:click="openEditModal({{ $book->id }})" variant="ghost" size="sm" icon="pencil" />
@@ -71,7 +87,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-6 py-12 text-center">
+                            <td colspan="7" class="px-6 py-12 text-center">
                                 <flux:icon name="book-open" class="mx-auto h-12 w-12 text-gray-400" />
                                 <p class="mt-4 text-gray-500">No books found in inventory</p>
                             </td>
@@ -110,6 +126,7 @@
                     @endforeach
                 </flux:select>
                 <flux:input wire:model="image" type="file" label="Book Cover" />
+                <flux:input wire:model="bookFile" type="file" label="Book File (PDF/DOC/DOCX)" />
             </div>
 
             @if ($image)
@@ -149,7 +166,17 @@
                     @endforeach
                 </flux:select>
                 <flux:input wire:model="image" type="file" label="Change Book Cover" />
+                <flux:input wire:model="bookFile" type="file" label="Replace Book File (PDF/DOC/DOCX)" />
             </div>
+
+            @if($existingFilePath)
+                <div class="text-xs text-gray-500">
+                    Current file:
+                    <a href="{{ asset('storage/' . $existingFilePath) }}" class="text-primary-800 dark:text-secondary-200 hover:underline" target="_blank" rel="noopener">
+                        {{ basename($existingFilePath) }}
+                    </a>
+                </div>
+            @endif
 
             <div class="flex justify-end gap-3">
                 <flux:button wire:click="$set('showEditModal', false)" variant="ghost">Cancel</flux:button>

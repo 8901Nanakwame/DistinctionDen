@@ -4,8 +4,8 @@
     {{-- Header Section --}}
     <div class="flex items-center justify-between">
         <div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Exam Dashboard</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Track your exam performance and progress</p>
+            <h2 class="text-2xl font-bold text-ink dark:text-white">Exam Dashboard</h2>
+            <p class="text-sm text-ink-muted dark:text-gray-400">Track your exam performance and progress</p>
         </div>
         <flux:button href="{{ route('exams.index') }}" variant="primary" icon="plus">
             Start New Exam
@@ -15,14 +15,14 @@
     {{-- Stats Cards --}}
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {{-- Total Exams Taken --}}
-        <div class="relative overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6">
+        <div class="relative overflow-hidden rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Exams</p>
                     <p class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{{ $this->totalExamsTaken }}</p>
                 </div>
-                <div class="rounded-full bg-indigo-100 dark:bg-indigo-900/30 p-3">
-                    <flux:icon name="academic-cap" class="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                <div class="rounded-full bg-primary-100 dark:bg-primary-900/30 p-3">
+                    <flux:icon name="academic-cap" class="h-6 w-6 text-primary-800 dark:text-secondary-300" />
                 </div>
             </div>
             <div class="mt-4">
@@ -31,7 +31,7 @@
         </div>
 
         {{-- Average Score --}}
-        <div class="relative overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6">
+        <div class="relative overflow-hidden rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Average Score</p>
@@ -47,7 +47,7 @@
         </div>
 
         {{-- Highest Score --}}
-        <div class="relative overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6">
+        <div class="relative overflow-hidden rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Best Score</p>
@@ -63,7 +63,7 @@
         </div>
 
         {{-- Latest Attempt --}}
-        <div class="relative overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6">
+        <div class="relative overflow-hidden rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Latest Exam</p>
@@ -78,8 +78,8 @@
                         <p class="mt-2 text-sm text-gray-400">No attempts yet</p>
                     @endif
                 </div>
-                <div class="rounded-full bg-blue-100 dark:bg-blue-900/30 p-3">
-                    <flux:icon name="clock" class="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <div class="rounded-full bg-secondary-100 dark:bg-secondary-900/30 p-3">
+                    <flux:icon name="clock" class="h-6 w-6 text-secondary-700 dark:text-secondary-300" />
                 </div>
             </div>
             <div class="mt-4">
@@ -91,13 +91,13 @@
     {{-- Charts Section --}}
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {{-- Performance Trend Chart --}}
-        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6">
+        <div class="rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 p-6">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Performance Trend</h3>
             <div class="h-64 flex items-end justify-between space-x-2">
                 @forelse($this->performanceTrend as $index => $attempt)
                     <div class="flex-1 flex flex-col items-center">
                         <div
-                            class="w-full bg-gradient-to-t from-indigo-500 to-indigo-400 rounded-t transition-all hover:from-indigo-600 hover:to-indigo-500"
+                            class="w-full bg-gradient-to-t from-primary-800 to-secondary-500 rounded-t transition-all hover:from-primary-900 hover:to-secondary-600"
                             style="height: {{ max($attempt->score, 10) }}%;"
                             title="Score: {{ $attempt->score }}%"
                         ></div>
@@ -114,7 +114,7 @@
         </div>
 
         {{-- Score by Question Type --}}
-        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6">
+        <div class="rounded-xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 p-6">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Performance by Question Type</h3>
             <div class="space-y-4">
                 @forelse($this->scoreByQuestionType as $typeData)
@@ -129,7 +129,7 @@
                         </div>
                         <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                             <div
-                                class="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all"
+                                class="h-full bg-gradient-to-r from-primary-800 to-secondary-500 rounded-full transition-all"
                                 style="width: {{ max($typeData->avg_score, 10) }}%;"
                             ></div>
                         </div>

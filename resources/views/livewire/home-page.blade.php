@@ -27,7 +27,7 @@
 
         <div class="flex-shrink-0 flex items-center ml-4 lg:ml-0">
             <a href="{{ route('home') }}">
-                <span class="text-2xl font-extrabold text-teal-600 tracking-tight">DISTINCTION<span class="text-indigo-900">DEN.</span></span>
+                <span class="text-2xl font-extrabold text-primary-800 tracking-tight">DISTINCTION<span class="text-secondary-500">DEN.</span></span>
             </a>
         </div>
 
@@ -43,12 +43,12 @@
         <flux:spacer />
 
         <div class="hidden md:flex items-center space-x-6">
-            <button class="text-gray-600 hover:text-teal-600 transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="text-ink-muted hover:text-primary-800 transition"><i class="fa-solid fa-magnifying-glass"></i></button>
             @guest
-                <a href="{{ route('login') }}" class="text-gray-600 hover:text-teal-600 font-medium transition">Login</a>
-                <a href="{{ route('register') }}" class="bg-indigo-900 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-indigo-800 transition">Sign Up</a>
+                <a href="{{ route('login') }}" class="text-ink-muted hover:text-primary-800 font-medium transition">Login</a>
+                <a href="{{ route('register') }}" class="bg-primary-800 text-white px-6 py-2.5 rounded-full font-semibold shadow-sm hover:bg-primary-700 transition">Sign Up</a>
             @else
-                <a href="{{ route('dashboard') }}" class="bg-indigo-900 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-indigo-800 transition">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="bg-primary-800 text-white px-6 py-2.5 rounded-full font-semibold shadow-sm hover:bg-primary-700 transition">Dashboard</a>
             @endguest
         </div>
     </flux:header>
@@ -56,7 +56,7 @@
     <flux:main class="space-y-16 pb-16">
 
     {{-- Hero Section --}}
-    <section class="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white">
+    <section class="relative overflow-hidden bg-gradient-to-r from-primary-950 via-primary-900 to-secondary-600 text-white">
         <div class="absolute inset-0 bg-black/20"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div class="text-center">
@@ -98,15 +98,15 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 text-center shadow-lg">
-                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{{ $this->totalBooksCount }}</div>
+                <div class="text-3xl font-bold text-primary-800 dark:text-secondary-300">{{ $this->totalBooksCount }}</div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Books Available</div>
             </div>
             <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 text-center shadow-lg">
-                <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">{{ $this->totalExamsCount }}</div>
+                <div class="text-3xl font-bold text-primary-800 dark:text-secondary-300">{{ $this->totalExamsCount }}</div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Practice Exams</div>
             </div>
             <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 text-center shadow-lg">
-                <div class="text-3xl font-bold text-pink-600 dark:text-pink-400">{{ $this->totalBlogsCount }}</div>
+                <div class="text-3xl font-bold text-primary-800 dark:text-secondary-300">{{ $this->totalBlogsCount }}</div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Blog Posts</div>
             </div>
             <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 text-center shadow-lg">
@@ -144,7 +144,7 @@
                         <h3 class="font-semibold text-gray-900 dark:text-white line-clamp-1">{{ $book->title }}</h3>
                         <p class="text-sm text-gray-500 dark:text-gray-400">{{ $book->author }}</p>
                         <div class="flex items-center justify-between mt-2">
-                            <span class="text-lg font-bold text-indigo-600 dark:text-indigo-400">GH₵ {{ number_format($book->price, 2) }}</span>
+                            <span class="text-lg font-bold text-primary-800 dark:text-secondary-300">GH₵ {{ number_format($book->price, 2) }}</span>
                             @if($book->stock > 0)
                                 <span class="text-xs text-green-600 dark:text-green-400">In Stock</span>
                             @endif
@@ -239,7 +239,7 @@
 
     {{-- Call to Action --}}
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 sm:p-12 text-center text-white shadow-xl">
+        <div class="rounded-2xl bg-gradient-to-r from-primary-900 via-primary-800 to-secondary-600 p-8 sm:p-12 text-center text-white shadow-xl">
             <h2 class="text-2xl sm:text-3xl font-bold mb-4">Ready to Start Learning?</h2>
             <p class="text-white/90 mb-6 max-w-xl mx-auto">
                 Join thousands of students who are already improving their skills with our educational platform.

@@ -2,7 +2,7 @@
     <div class="max-w-4xl mx-auto space-y-8">
         {{-- Back Link --}}
         <div>
-            <a href="{{ route('blog.index') }}" class="inline-flex items-center gap-2 text-sm text-indigo-700 dark:text-indigo-300 hover:underline">
+            <a href="{{ route('blog.index') }}" class="inline-flex items-center gap-2 text-sm text-primary-800 dark:text-secondary-200 hover:underline">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
@@ -15,7 +15,7 @@
             {{-- Category & Date --}}
             <div class="flex flex-wrap items-center gap-3">
                 @if($post->category)
-                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/40 text-primary-900 dark:text-secondary-200">
                         {{ $post->category->name }}
                     </span>
                 @endif
@@ -43,8 +43,8 @@
         </article>
 
         {{-- Article Content --}}
-        <div class="prose prose-lg dark:prose-invert max-w-none">
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 sm:p-8 lg:p-10">
+            <div class="prose prose-lg dark:prose-invert max-w-none">
+            <div class="bg-surface dark:bg-zinc-950/40 rounded-2xl border border-border dark:border-zinc-800 shadow-lg p-6 sm:p-8 lg:p-10">
                 <div class="blog-content text-gray-800 dark:text-gray-200 leading-relaxed space-y-4">
                     {!! $post->content !!}
                 </div>
@@ -94,7 +94,7 @@
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Related Articles</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @foreach($relatedPosts as $relatedPost)
-                        <a href="{{ route('blog.show', $relatedPost) }}" class="group block bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow hover:shadow-lg transition-shadow">
+                        <a href="{{ route('blog.show', $relatedPost) }}" class="group block bg-surface dark:bg-zinc-950/40 rounded-xl overflow-hidden border border-border dark:border-zinc-800 shadow-sm hover:shadow-lg transition-shadow">
                             @if($relatedPost->image)
                                 <div class="aspect-video bg-gray-200 dark:bg-gray-700 overflow-hidden">
                                     <img src="{{ $relatedPost->image }}" alt="{{ $relatedPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
@@ -102,9 +102,9 @@
                             @endif
                             <div class="p-4">
                                 @if($relatedPost->category)
-                                    <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 rounded">{{ $relatedPost->category->name }}</span>
+                                    <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900/40 text-primary-800 dark:text-secondary-200 rounded">{{ $relatedPost->category->name }}</span>
                                 @endif
-                                <h3 class="font-semibold text-gray-900 dark:text-white mt-2 line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{{ $relatedPost->title }}</h3>
+                                <h3 class="font-semibold text-gray-900 dark:text-white mt-2 line-clamp-2 group-hover:text-primary-800 dark:group-hover:text-secondary-200">{{ $relatedPost->title }}</h3>
                                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
                                     {{ $relatedPost->published_at?->format('M d, Y') }}
                                 </p>

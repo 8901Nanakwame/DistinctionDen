@@ -105,7 +105,7 @@
                     @endif
 
                     <div class="flex items-center justify-between">
-                        <span class="text-lg font-bold text-indigo-600 dark:text-indigo-400">
+                        <span class="text-lg font-bold text-primary-800 dark:text-secondary-300">
                             GH₵ {{ number_format($book->price, 2) }}
                         </span>
                         @if($book->stock > 0)

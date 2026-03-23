@@ -17,12 +17,12 @@
         @if($featuredPost)
             <article class="group relative rounded-2xl overflow-hidden shadow-xl">
                 @if(filled($featuredPost->image))
-                    <div class="aspect-[21/9] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+                    <div class="aspect-[21/9] bg-gradient-to-br from-primary-950 via-primary-900 to-secondary-600">
                         <img src="{{ $featuredPost->image }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 @else
-                    <div class="aspect-[21/9] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500"></div>
+                    <div class="aspect-[21/9] bg-gradient-to-br from-primary-950 via-primary-900 to-secondary-600"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 @endif
 
@@ -39,7 +39,7 @@
                     </div>
 
                     <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">
-                        <a href="{{ route('blog.show', $featuredPost) }}" class="hover:text-indigo-300 transition-colors">
+                        <a href="{{ route('blog.show', $featuredPost) }}" class="hover:text-secondary-200 transition-colors">
                             {{ $featuredPost->title }}
                         </a>
                     </h2>
@@ -48,7 +48,7 @@
                         {{ \Illuminate\Support\Str::limit(strip_tags($featuredPost->content), 200) }}
                     </p>
 
-                    <a href="{{ route('blog.show', $featuredPost) }}" class="inline-flex items-center gap-2 text-white font-medium hover:text-indigo-300 transition-colors">
+                    <a href="{{ route('blog.show', $featuredPost) }}" class="inline-flex items-center gap-2 text-white font-medium hover:text-secondary-200 transition-colors">
                         Read Full Article
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -61,19 +61,19 @@
         {{-- Blog Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($remainingPosts as $post)
-                <article class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+                <article class="group rounded-2xl border border-border dark:border-zinc-800 bg-surface dark:bg-zinc-950/40 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
                     @if(filled($post->image))
                         <div class="aspect-[16/9] bg-gray-100 dark:bg-gray-800 overflow-hidden">
                             <img src="{{ $post->image }}" alt="{{ $post->title }}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" />
                         </div>
                     @else
-                        <div class="aspect-[16/9] bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-pink-500/20"></div>
+                        <div class="aspect-[16/9] bg-gradient-to-br from-primary-500/15 via-primary-700/10 to-secondary-500/15"></div>
                     @endif
 
                     <div class="p-5 space-y-3">
                         <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
                             @if($post->category)
-                                <span class="inline-flex items-center rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-2 py-0.5">
+                                <span class="inline-flex items-center rounded-full bg-primary-100 dark:bg-primary-900/40 text-primary-900 dark:text-secondary-200 px-2 py-0.5">
                                     {{ $post->category->name }}
                                 </span>
                             @endif
@@ -84,7 +84,7 @@
                         </div>
 
                         <h2 class="text-lg font-semibold leading-snug text-gray-900 dark:text-white">
-                            <a href="{{ route('blog.show', $post) }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                            <a href="{{ route('blog.show', $post) }}" class="hover:text-primary-800 dark:hover:text-secondary-200 transition-colors">
                                 {{ $post->title }}
                             </a>
                         </h2>
@@ -94,7 +94,7 @@
                         </p>
 
                         <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
-                            <a href="{{ route('blog.show', $post) }}" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline">
+                            <a href="{{ route('blog.show', $post) }}" class="text-sm font-medium text-primary-800 dark:text-secondary-200 hover:underline">
                                 Read more →
                             </a>
                             @if($post->user)

@@ -1,4 +1,4 @@
-<flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+<flux:sidebar sticky collapsible="mobile" class="border-e border-border bg-surface/70 dark:border-zinc-800 dark:bg-zinc-950/40 backdrop-blur">
     <flux:sidebar.header>
         <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
         <flux:sidebar.collapse class="lg:hidden" />

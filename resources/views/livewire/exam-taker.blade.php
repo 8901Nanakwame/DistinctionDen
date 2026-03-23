@@ -14,8 +14,8 @@
         <div class="max-w-3xl mx-auto">
             <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-8">
                 <div class="text-center mb-8">
-                    <div class="mx-auto h-16 w-16 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mb-4">
-                        <flux:icon name="academic-cap" class="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
+                    <div class="mx-auto h-16 w-16 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-4">
+                        <flux:icon name="academic-cap" class="h-8 w-8 text-primary-800 dark:text-secondary-300" />
                     </div>
                     <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{{ $exam->title }}</h1>
                     <p class="text-gray-600 dark:text-gray-400 mb-4">{{ $exam->description }}</p>
@@ -65,9 +65,9 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-900/20">
-                            <flux:icon name="clock" class="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                            <span class="text-lg font-mono font-bold text-indigo-600 dark:text-indigo-400"
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-50 dark:bg-primary-900/20">
+                            <flux:icon name="clock" class="h-5 w-5 text-primary-800 dark:text-secondary-300" />
+                            <span class="text-lg font-mono font-bold text-primary-800 dark:text-secondary-300"
                                   wire:poll.1s="decrementTimer">
                                 {{ gmdate('H:i:s', $timeRemaining) }}
                             </span>
@@ -78,7 +78,7 @@
                 {{-- PROGRESS BAR --}}
                 <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div
-                        class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-300"
+                        class="h-full bg-gradient-to-r from-primary-800 to-secondary-500 transition-all duration-300"
                         style="width: {{ $this->progressPercentage }}%"
                     ></div>
                 </div>
@@ -93,7 +93,7 @@
                     <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-8 shadow-sm">
                         <div class="mb-6">
                             <div class="flex items-center justify-between mb-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-900 dark:bg-primary-900/30 dark:text-secondary-300">
                                     Question {{ ($currentPage * $perPage) + $loop->iteration }}
                                 </span>
                                 <span class="text-xs text-gray-500 dark:text-gray-400">
@@ -118,17 +118,17 @@
                                             wire:click="selectAnswer({{ $question->id }}, '{{ $optionText }}')"
                                             class="text-left p-4 rounded-lg border-2 transition-all group
                                                 @if(($answers[$question->id] ?? null) === $optionText)
-                                                    border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20
+                                                    border-primary-700 bg-primary-50 dark:bg-primary-900/20
                                                 @else
-                                                    border-gray-100 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700
+                                                    border-border dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700
                                                 @endif"
                                         >
                                             <div class="flex items-center gap-3">
                                                 <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold
                                                     @if(($answers[$question->id] ?? null) === $optionText)
-                                                        bg-indigo-500 text-white
+                                                        bg-primary-800 text-white
                                                     @else
-                                                        bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/40
+                                                        bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/40
                                                     @endif">
                                                    {{ chr(65 +  $optIndex) }}
                                                 </span>
@@ -202,7 +202,7 @@
                                 wire:click="goToPage({{ $p }})"
                                 class="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-medium transition-all
                                     @if($p === $currentPage)
-                                        bg-indigo-500 text-white ring-2 ring-indigo-300 dark:ring-indigo-800
+                                        bg-primary-800 text-white ring-2 ring-secondary-300 dark:ring-primary-800
                                     @else
                                         bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400
                                     @endif"
@@ -297,12 +297,12 @@
                 </div>
 
                 {{-- CORRECTION REVIEW BUTTON --}}
-                <div class="mb-6 p-4 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800">
+                <div class="mb-6 p-4 rounded-lg bg-primary-50 dark:bg-primary-900/20 border border-border dark:border-primary-800/60">
                     <div class="flex items-center gap-3">
-                        <flux:icon name="magnifying-glass-circle" class="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                        <flux:icon name="magnifying-glass-circle" class="h-6 w-6 text-primary-800 dark:text-secondary-300" />
                         <div class="flex-1">
-                            <p class="text-sm font-semibold text-indigo-900 dark:text-indigo-300">Review Your Answers</p>
-                            <p class="text-xs text-indigo-700 dark:text-indigo-400">See which questions you got right or wrong with the correct answers</p>
+                            <p class="text-sm font-semibold text-primary-900 dark:text-secondary-200">Review Your Answers</p>
+                            <p class="text-xs text-primary-700 dark:text-secondary-300">See which questions you got right or wrong with the correct answers</p>
                         </div>
                         <flux:button href="{{ route('exams.correction', ['exam' => $exam, 'attempt' => $attempt]) }}" variant="primary" icon="eye">
                             View Correction

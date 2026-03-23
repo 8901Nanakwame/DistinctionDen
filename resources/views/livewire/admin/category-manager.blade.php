@@ -73,7 +73,7 @@
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
                                     @if($category->type === 'exam') bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400
                                     @elseif($category->type === 'book') bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400
-                                    @else bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400
+                                    @else bg-primary-100 text-primary-900 dark:bg-primary-900/30 dark:text-secondary-300
                                     @endif">
                                     {{ ucfirst($category->type) }}
                                 </span>
